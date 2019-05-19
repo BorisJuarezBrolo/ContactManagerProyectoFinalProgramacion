@@ -265,8 +265,7 @@ while exitSeleccion == False:
          ruta = input ("\n Ingresa la ruta del archivo de contactos: ")
         loadFromFile(ruta)
         
-        
-    elif opcionInteraccion == "6":  # 6. Interaccion contactos (sub menu - fase 3)
+    elif seleccion == "6":  # 6. Interaccion contactos (sub menu - fase 3)
         print("\n Sub menu Interaccion Contactos \n".center(100, "-"))
         print(fase3Opcion1)
         print(fase3Opcion2)
@@ -274,7 +273,7 @@ while exitSeleccion == False:
         print(fase3Opcion4)
         print(fase3Opcion5)
         print(fase3Opcion6)
-        
+
         #variable que permite el ciclo de sub menu y hasta que cambie saldra al menu principal
         terminosubMenu = False
 
