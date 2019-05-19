@@ -1,4 +1,5 @@
 import os.path as path
+import time
 
 #variables para texto de menu principal
 textoTitulo = " Proyecto Contact Manager App "
