@@ -172,6 +172,14 @@ def callContact(IDcontacto):
         print("\n Llamada finalizada")
     else:
          print("\n ContactoID no existe")
+      
+#metodo que devuelve los datos de un contacto (ID, nombre, apellido, telefono) en un arreglo (lista)
+def datosContactoID(IDcontacto):
+    arregloContactoID = []
+    contactoExiste = False
+    for fila in listaVacia:
+        arregloContactoID = fila.split(",")
+        contactoID = arregloContactoID[0]
             
 #metodo que carga a lista con contactos para enviar mensaje
 def msgContacts(IDcontacto):
