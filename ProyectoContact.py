@@ -25,3 +25,13 @@ print(opcion6)
 print(opcion7)
 print(opcion8)
 print(opcionExit)
+
+
+while exitSeleccion == False:
+    seleccion = input("¿Que opcion deseas? : ")
+    terminado1 = False
+   
+    if seleccion == "1": 
+        contadorContactos = 0
+        for filas in listaVacia:
+                contadorContactos += 1
