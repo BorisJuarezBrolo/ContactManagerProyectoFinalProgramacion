@@ -27,6 +27,14 @@ print(opcion7)
 print(opcion8)
 print(opcionExit)
 
+#variables para texto de sub menu (fase 3)
+fase3Opcion1 = "\n 1. Llamar Contacto  \n"
+fase3Opcion2 = " 2. Mensaje Contactos  \n"
+fase3Opcion3 = " 3. Agregar Contacto Favoritos  \n"
+fase3Opcion4 = " 4. Lista Favoritos  \n"
+fase3Opcion5 = " 5. Eliminar Contacto Favorito  \n"
+fase3Opcion6 = " 6. Exit sub menu  \n"
+
 
 #variable listaVacia principal, contactoNuevo para datos de contacto, Golbales para que intractuen en todos metodos 
 listaVacia = []
