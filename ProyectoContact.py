@@ -163,6 +163,14 @@ def callContact(IDcontacto):
         print(" Telefono : " + str(datosContactoID(IDcontacto)[3]))
         tiempoTranscurrido = 0
   
+#metodo que agrega un contacto existente a la lista de favoritos
+def addToFavorite(IDcontacto): 
+    
+    if datosContactoID(IDcontacto):
+        listaFavoritos.append(datosContactoID(IDcontacto)[0] + "," + datosContactoID(IDcontacto)[1] + "," + datosContactoID(IDcontacto)[2] + "," + datosContactoID(IDcontacto)[3]) 
+    else:
+        print("\n ContactoID no existe")
+
 #variable para ciclo de menu principal, es la que condiciona que no termine el programa hasta que se elija la opcion exit
 exitSeleccion = False
 
