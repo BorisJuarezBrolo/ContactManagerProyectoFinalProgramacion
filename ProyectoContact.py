@@ -180,6 +180,9 @@ def datosContactoID(IDcontacto):
     for fila in listaVacia:
         arregloContactoID = fila.split(",")
         contactoID = arregloContactoID[0]
+        if contactoID == str(IDcontacto):
+            contactoExiste = True
+            break
             
 #metodo que carga a lista con contactos para enviar mensaje
 def msgContacts(IDcontacto):
