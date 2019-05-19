@@ -162,6 +162,29 @@ def callContact(IDcontacto):
         print("\n Llamando a : " + datosContactoID(IDcontacto)[1] + " " + datosContactoID(IDcontacto)[2] )
         print(" Telefono : " + str(datosContactoID(IDcontacto)[3]))
         tiempoTranscurrido = 0
+        
+        while tiempoTranscurrido < 15:
+            tiempoInicial = time.time()       
+            tiempoFinal = time.time()
+            tiempoTranscurrido = tiempoTranscurrido + (tiempoFinal - tiempoInicial)
+
+                  
+        print("\n Llamada finalizada")
+    else:
+         print("\n ContactoID no existe")
+            
+#metodo que carga a lista con contactos para enviar mensaje
+def msgContacts(IDcontacto):
+    
+    infoContacto = datosContactoID(IDcontacto)
+    if infoContacto:
+        listaContactosMsj.append(infoContacto[1] + " " + infoContacto[2] + " ( " + infoContacto[3] + " ) ")
+    else:
+        print("\n ContactoID no existe")
+            
+            
+            
+            
   
 #metodo que agrega un contacto existente a la lista de favoritos
 def addToFavorite(IDcontacto): 
@@ -170,7 +193,7 @@ def addToFavorite(IDcontacto):
         listaFavoritos.append(datosContactoID(IDcontacto)[0] + "," + datosContactoID(IDcontacto)[1] + "," + datosContactoID(IDcontacto)[2] + "," + datosContactoID(IDcontacto)[3]) 
     else:
         print("\n ContactoID no existe")
-
+       
 #metodo que devuelve la lista de contactos favoritos con todos sus datos y ordenados por apellido y nombre    
 def getFavoriteList(): 
 
@@ -238,7 +261,7 @@ while exitSeleccion == False:
     elif seleccion == "4":  # 4. Carga desde archivo local
         loadLocalFile() 
     
-    elif seleccion == "5":  # 4. Carga de un archivo externo 
+    elif seleccion == "5":  # 5. Carga de un archivo externo 
          ruta = input ("\n Ingresa la ruta del archivo de contactos: ")
         loadFromFile(ruta)
         
@@ -250,7 +273,7 @@ while exitSeleccion == False:
         print(fase3Opcion4)
         print(fase3Opcion5)
         print(fase3Opcion6)
-        
+
         #variable que permite el ciclo de sub menu y hasta que cambie saldra al menu principal
         terminosubMenu = False
 
@@ -274,6 +297,20 @@ while exitSeleccion == False:
                         mensaje = input("\n Escribe tu mensaje : ")
                         print(contactosSeleccionados)
                         print("\n Msj: " + mensaje)
+            elif opcionInteraccion == "3":  # 3. Agregar Contacto Favoritos 
+
+                contadorFavoritos = 0
+                terminadoAddFavoritos = False
+                while terminadoAddFavoritos == False:			
+                    IDcontactofav = input("\n ContactID: ")               
+                    addToFavorite(IDcontactofav)
+            
+                    continuar = input("\n Escribe 1 si deseas agregar mas contactos, 0 si has terminado: ")
+                    if(continuar == "0"):
+                        terminadoAddFavoritos = True
+
+            elif opcionInteraccion == "4":  # 4. Lista Favoritos
+                getFavoriteList()
 
    
         
