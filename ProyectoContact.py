@@ -96,7 +96,7 @@ def removeContact(nombre,apellido):
 def loadLocalFile():
     dirFichero = 'InitialContacts.txt'
     if(path.exists(dirFichero)):
-        with open(dirFichero, 'r') as reader:
+        with open(dirFichero, 'r',1, 'cp1252') as reader:
 
             cantidadID = 0
             for filas in listaVacia:
@@ -114,10 +114,53 @@ def loadLocalFile():
             print("\n Archivo cargado exitosamente.")
     else:
         print("\n El archivo " + dirFichero + " no existe en la carpeta local.")
+#metodo para cargar archivo de carpeta externa en la lista de contactos
+#puede recibir .txt separados por "," o .csv separados por ";" u otros archivos de texto separados por ","
+def loadFromFile(externalFile):
+
+    if(path.exists(externalFile)):
+        with open(externalFile, 'r', 1, 'cp1252') as reader:
+
+            cantidadID = 0
+            for filas in listaVacia:
+                cantidadID += 1
+            
+            if path.splitext(externalFile)[1] == ".txt":
+                for linea in reader:
+                    cantidadID = cantidadID + 1
+                    arregloContactoLocal = linea.split(",")
+                    nombreLocal = arregloContactoLocal[0]
+                    apellidoLocal = arregloContactoLocal[1]
+                    telefonoLocal = arregloContactoLocal[2]
+                    addContact(nombreLocal, apellidoLocal, telefonoLocal, cantidadID)
+            elif path.splitext(externalFile)[1] == ".csv":
+                for linea in reader:
+                    cantidadID = cantidadID + 1
+                    arregloContactoLocal = linea.split(";")
+                    nombreLocal = arregloContactoLocal[0]
+                    apellidoLocal = arregloContactoLocal[1]
+                    telefonoLocal = arregloContactoLocal[2]
+                    addContact(nombreLocal, apellidoLocal, telefonoLocal, cantidadID)
+            else:
+                for linea in reader:
+                    cantidadID = cantidadID + 1
+                    arregloContactoLocal = linea.split(",")
+                    nombreLocal = arregloContactoLocal[0]
+                    apellidoLocal = arregloContactoLocal[1]
+                    telefonoLocal = arregloContactoLocal[2]
+                    addContact(nombreLocal, apellidoLocal, telefonoLocal, cantidadID)
+
+            print("\n Archivo cargado exitosamente.")
+    
+    else:
+        print("\n El archivo de contactos en la ruta " + externalFile + " no existe.")
+
+
   
   
 #variable para ciclo de menu principal, es la que condiciona que no termine el programa hasta que se elija la opcion exit
 exitSeleccion = False
+
 
 #ciclo de menu principal que permite navegar entre todas las opciones de la app
 while exitSeleccion == False:
@@ -130,6 +173,7 @@ while exitSeleccion == False:
         contadorContactos = 0
         for filas in listaVacia:
                 contadorContactos += 1
+            
         while terminado1 == False:			
             nombrein = input("\n Nombre: ")
             apellidoin = input("\n Apellido: ")
@@ -148,8 +192,15 @@ while exitSeleccion == False:
         apellidoDel = input("\n Apellido: ")
     
     elif seleccion == "4":  # 4. Carga desde archivo local
-        loadLocalFile()
+        loadLocalFile() 
+    
+    elif seleccion == "5":  # 4. Carga de un archivo externo 
+         ruta = input ("\n Ingresa la ruta del archivo de contactos: ")
+        loadFromFile(ruta)
         
         
     elif opcionInteraccion == "6":  # 6. Exit sub menu
                 terminosubMenu = True
+
+   
+        
