@@ -186,6 +186,45 @@ def msgContacts(IDcontacto):
             
             
   
+#metodo que agrega un contacto existente a la lista de favoritos
+def addToFavorite(IDcontacto): 
+    
+    if datosContactoID(IDcontacto):
+        listaFavoritos.append(datosContactoID(IDcontacto)[0] + "," + datosContactoID(IDcontacto)[1] + "," + datosContactoID(IDcontacto)[2] + "," + datosContactoID(IDcontacto)[3]) 
+    else:
+        print("\n ContactoID no existe")
+       
+#metodo que devuelve la lista de contactos favoritos con todos sus datos y ordenados por apellido y nombre    
+def getFavoriteList(): 
+
+    snombre = "Nombre"
+    sapellido = "Apellido"
+    sContactID = "ContactID"
+    sTel = "Telefono"
+    print("\n{0:10} {1:10} {2:10} {3:10} \n" .format(sContactID, snombre, sapellido, sTel))    
+    listaFavoritos.sort(key=ordenarContacto)
+
+    for contacto in listaFavoritos:
+        arregloContactos = contacto.split(",")
+        IDcontacto = arregloContactos[0]
+        nombre = arregloContactos[1]
+        apellido = arregloContactos[2]
+        tel = arregloContactos[3]           
+        print("{0:10} {1:10} {2:10} {3:10}" .format(IDcontacto, nombre, apellido, tel))
+
+#metodo que elimina un contacto recibiendo nombre y apellido de la lista de favoritos
+def removeFromFavorite(nombre,apellido):
+    
+    for contactofav in listaFavoritos:
+        arregloContactofav = contactofav.split(",") 
+        nombreContactoListafav = arregloContactofav[1]
+        apellidoContactoListafav = arregloContactofav[2]
+        if str(nombreContactoListafav).upper() == nombre.strip().upper() and str(apellidoContactoListafav).upper() == apellido.strip().upper():
+            listaFavoritos.remove(contactofav)
+            print("\n Contacto eliminado de favoritos")
+        
+        
+        
 #variable para ciclo de menu principal, es la que condiciona que no termine el programa hasta que se elija la opcion exit
 exitSeleccion = False
 
@@ -222,13 +261,43 @@ while exitSeleccion == False:
     elif seleccion == "4":  # 4. Carga desde archivo local
         loadLocalFile() 
     
-    elif seleccion == "5":  # 4. Carga de un archivo externo 
+    elif seleccion == "5":  # 5. Carga de un archivo externo 
          ruta = input ("\n Ingresa la ruta del archivo de contactos: ")
         loadFromFile(ruta)
         
         
-    elif opcionInteraccion == "6":  # 6. Exit sub menu
-                terminosubMenu = True
+    elif opcionInteraccion == "6":  # 6. Interaccion contactos (sub menu - fase 3)
+        print("\n Sub menu Interaccion Contactos \n".center(100, "-"))
+        print(fase3Opcion1)
+        print(fase3Opcion2)
+        print(fase3Opcion3)
+        print(fase3Opcion4)
+        print(fase3Opcion5)
+        print(fase3Opcion6)
+        
+        #variable que permite el ciclo de sub menu y hasta que cambie saldra al menu principal
+        terminosubMenu = False
+
+        #ciclo que se mantiene en las opciones de sub menu fase 3
+        while terminosubMenu == False:
+            opcionInteraccion = input("\n Ejecutar opcion : ")
+        
+            if opcionInteraccion == "1":  # 1. Llamar Contacto
+                xcontactID = input("\n Ingresa el contactcID : ")
+                callContact(xcontactID)
+            elif opcionInteraccion == "2":  # 2. Mensaje Contactos
+                listaContactosMsj = []
+                terminadoMsjContacto = False
+                while terminadoMsjContacto == False:			
+                    msjContactID = input("\n ContactID : ")
+                    msgContacts(msjContactID)
+                    continuar = input("\n Escribe 1 si deseas agregar mas contactos, 0 si has terminado: ")
+                    if(continuar == "0"):
+                        terminadoMsjContacto = True
+                        contactosSeleccionados = listamsjContactos()
+                        mensaje = input("\n Escribe tu mensaje : ")
+                        print(contactosSeleccionados)
+                        print("\n Msj: " + mensaje)
 
    
         
