@@ -65,7 +65,7 @@ def listContacts():
         nombre = arregloContactos[1]
         apellido = arregloContactos[2]
         tel = arregloContactos[3]           
-        print(IDcontacto, nombre, apellido, tel)
+        print("{0:10} {1:10} {2:10} {3:10}" .format(IDcontacto, nombre, apellido, tel))
 
 
 
@@ -89,4 +89,7 @@ while exitSeleccion == False:
             continuar = input("\n Escribe 1 si deseas agregar mas contactos, 0 si has terminado: ")
             if(continuar == "0"):
                 terminado1 = True
+                
+    elif seleccion == "2":  # Lista de contactos
+        listContacts() 
 
