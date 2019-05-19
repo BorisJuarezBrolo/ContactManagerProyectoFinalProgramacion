@@ -297,6 +297,20 @@ while exitSeleccion == False:
                         mensaje = input("\n Escribe tu mensaje : ")
                         print(contactosSeleccionados)
                         print("\n Msj: " + mensaje)
+            elif opcionInteraccion == "3":  # 3. Agregar Contacto Favoritos 
+
+                contadorFavoritos = 0
+                terminadoAddFavoritos = False
+                while terminadoAddFavoritos == False:			
+                    IDcontactofav = input("\n ContactID: ")               
+                    addToFavorite(IDcontactofav)
+            
+                    continuar = input("\n Escribe 1 si deseas agregar mas contactos, 0 si has terminado: ")
+                    if(continuar == "0"):
+                        terminadoAddFavoritos = True
+
+            elif opcionInteraccion == "4":  # 4. Lista Favoritos
+                getFavoriteList()
 
    
         
