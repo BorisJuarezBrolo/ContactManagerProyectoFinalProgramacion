@@ -308,9 +308,24 @@ while exitSeleccion == False:
                     continuar = input("\n Escribe 1 si deseas agregar mas contactos, 0 si has terminado: ")
                     if(continuar == "0"):
                         terminadoAddFavoritos = True
-
-            elif opcionInteraccion == "4":  # 4. Lista Favoritos
-                getFavoriteList()
+                        
+                        
+             elif opcionInteraccion == "4":  # 4. Lista Favoritos
+                getFavoriteList()      
+                
+             elif opcionInteraccion == "5":  # 5. Eliminar Contacto Favorito
+                nombreDelfav = input("\n Nombre: ") 
+                apellidoDelfav = input("\n Apellido: ")
+                removeFromFavorite(nombreDelfav,apellidoDelfav)
+             elif opcionInteraccion == "6":  # 6. Exit sub menu
+                terminosubMenu = True
+     
+    elif seleccion == "7":  # 7. Obtener Contactos Web
+        GETcontactosAPI()
+        
+    elif seleccion == "8":  # 8. Cargar Contactos Web
+        POSTcontactoAPI()
+ 
 
    
         
