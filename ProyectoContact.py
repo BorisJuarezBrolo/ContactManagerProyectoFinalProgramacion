@@ -254,22 +254,26 @@ while exitSeleccion == False:
         #variable que permite el ciclo de sub menu y hasta que cambie saldra al menu principal
         terminosubMenu = False
 
-        #ciclo que se mantiene en las opciones de sub menu fase 3        
-    if opcionInteraccion == "1":  # 1. Llamar Contacto
-       xcontactID = input("\n Ingresa el contactcID : ")
-       callContact(xcontactID)
-    elif opcionInteraccion == "2":  # 2. Mensaje Contactos
-       listaContactosMsj = []
-       terminadoMsjContacto = False
-
-continuar = input("\n Escribe 1 si deseas agregar mas contactos, 0 si has terminado: ")
-    if(continuar == "0"):
-       terminadoMsjContacto = True
-       contactosSeleccionados = listamsjContactos()
-       mensaje = input("\n Escribe tu mensaje : ")
-       print(contactosSeleccionados)
-       print("\n Msj: " + mensaje)
-       
+        #ciclo que se mantiene en las opciones de sub menu fase 3
+        while terminosubMenu == False:
+            opcionInteraccion = input("\n Ejecutar opcion : ")
+        
+            if opcionInteraccion == "1":  # 1. Llamar Contacto
+                xcontactID = input("\n Ingresa el contactcID : ")
+                callContact(xcontactID)
+            elif opcionInteraccion == "2":  # 2. Mensaje Contactos
+                listaContactosMsj = []
+                terminadoMsjContacto = False
+                while terminadoMsjContacto == False:			
+                    msjContactID = input("\n ContactID : ")
+                    msgContacts(msjContactID)
+                    continuar = input("\n Escribe 1 si deseas agregar mas contactos, 0 si has terminado: ")
+                    if(continuar == "0"):
+                        terminadoMsjContacto = True
+                        contactosSeleccionados = listamsjContactos()
+                        mensaje = input("\n Escribe tu mensaje : ")
+                        print(contactosSeleccionados)
+                        print("\n Msj: " + mensaje)
 
    
         
