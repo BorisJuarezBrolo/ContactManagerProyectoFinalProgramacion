@@ -193,6 +193,17 @@ def addToFavorite(IDcontacto):
         listaFavoritos.append(datosContactoID(IDcontacto)[0] + "," + datosContactoID(IDcontacto)[1] + "," + datosContactoID(IDcontacto)[2] + "," + datosContactoID(IDcontacto)[3]) 
     else:
         print("\n ContactoID no existe")
+        
+#metodo que devuelve la lista de contactos favoritos con todos sus datos y ordenados por apellido y nombre    
+def getFavoriteList(): 
+
+    snombre = "Nombre"
+    sapellido = "Apellido"
+    sContactID = "ContactID"
+    sTel = "Telefono"
+    print("\n{0:10} {1:10} {2:10} {3:10} \n" .format(sContactID, snombre, sapellido, sTel))    
+    listaFavoritos.sort(key=ordenarContacto)
+
 
 #variable para ciclo de menu principal, es la que condiciona que no termine el programa hasta que se elija la opcion exit
 exitSeleccion = False
