@@ -1,5 +1,7 @@
 import os.path as path
 import time
+import requests
+import json
 
 #variables para texto de menu principal
 textoTitulo = " Proyecto Contact Manager App "
@@ -40,6 +42,10 @@ fase3Opcion6 = " 6. Exit sub menu  \n"
 listaVacia = []
 contactoNuevo = []
 listaFavoritos = []
+
+#variables para fase 6 (web apis) 
+rutaWeb = 'http://demo7862839.mockable.io/contacts?gid=101'
+
 
 #Metodo que parte el texto de listaVacia y devuelve el elemento de la lista de apellido (posicion 2) y cuando no encuentra apellido
 #devuelve nombre (posicion 1)
@@ -108,8 +114,7 @@ def loadLocalFile():
             print("\n Archivo cargado exitosamente.")
     else:
         print("\n El archivo " + dirFichero + " no existe en la carpeta local.")
-        
-       #metodo para cargar archivo de carpeta externa en la lista de contactos
+#metodo para cargar archivo de carpeta externa en la lista de contactos
 #puede recibir .txt separados por "," o .csv separados por ";" u otros archivos de texto separados por ","
 def loadFromFile(externalFile):
 
@@ -151,6 +156,11 @@ def loadFromFile(externalFile):
         print("\n El archivo de contactos en la ruta " + externalFile + " no existe.")
 
 
+  
+  
+#variable para ciclo de menu principal, es la que condiciona que no termine el programa hasta que se elija la opcion exit
+exitSeleccion = False
+
 
 #ciclo de menu principal que permite navegar entre todas las opciones de la app
 while exitSeleccion == False:
@@ -163,6 +173,7 @@ while exitSeleccion == False:
         contadorContactos = 0
         for filas in listaVacia:
                 contadorContactos += 1
+            
         while terminado1 == False:			
             nombrein = input("\n Nombre: ")
             apellidoin = input("\n Apellido: ")
@@ -181,11 +192,15 @@ while exitSeleccion == False:
         apellidoDel = input("\n Apellido: ")
     
     elif seleccion == "4":  # 4. Carga desde archivo local
-        loadLocalFile()
-        
+        loadLocalFile() 
+    
     elif seleccion == "5":  # 4. Carga de un archivo externo 
          ruta = input ("\n Ingresa la ruta del archivo de contactos: ")
         loadFromFile(ruta)
         
         
+    elif opcionInteraccion == "6":  # 6. Exit sub menu
+                terminosubMenu = True
 
+   
+        
