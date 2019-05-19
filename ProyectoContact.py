@@ -1,5 +1,7 @@
 import os.path as path
 import time
+import requests
+import json
 
 #variables para texto de menu principal
 textoTitulo = " Proyecto Contact Manager App "
@@ -27,11 +29,23 @@ print(opcion7)
 print(opcion8)
 print(opcionExit)
 
+#variables para texto de sub menu (fase 3)
+fase3Opcion1 = "\n 1. Llamar Contacto  \n"
+fase3Opcion2 = " 2. Mensaje Contactos  \n"
+fase3Opcion3 = " 3. Agregar Contacto Favoritos  \n"
+fase3Opcion4 = " 4. Lista Favoritos  \n"
+fase3Opcion5 = " 5. Eliminar Contacto Favorito  \n"
+fase3Opcion6 = " 6. Exit sub menu  \n"
+
 
 #variable listaVacia principal, contactoNuevo para datos de contacto, Golbales para que intractuen en todos metodos 
 listaVacia = []
 contactoNuevo = []
 listaFavoritos = []
+
+#variables para fase 6 (web apis) 
+rutaWeb = 'http://demo7862839.mockable.io/contacts?gid=101'
+
 
 #Metodo que parte el texto de listaVacia y devuelve el elemento de la lista de apellido (posicion 2) y cuando no encuentra apellido
 #devuelve nombre (posicion 1)
@@ -82,7 +96,7 @@ def removeContact(nombre,apellido):
 def loadLocalFile():
     dirFichero = 'InitialContacts.txt'
     if(path.exists(dirFichero)):
-        with open(dirFichero, 'r') as reader:
+        with open(dirFichero, 'r',1, 'cp1252') as reader:
 
             cantidadID = 0
             for filas in listaVacia:
@@ -100,7 +114,88 @@ def loadLocalFile():
             print("\n Archivo cargado exitosamente.")
     else:
         print("\n El archivo " + dirFichero + " no existe en la carpeta local.")
+#metodo para cargar archivo de carpeta externa en la lista de contactos
+#puede recibir .txt separados por "," o .csv separados por ";" u otros archivos de texto separados por ","
+def loadFromFile(externalFile):
 
+    if(path.exists(externalFile)):
+        with open(externalFile, 'r', 1, 'cp1252') as reader:
+
+            cantidadID = 0
+            for filas in listaVacia:
+                cantidadID += 1
+            
+            if path.splitext(externalFile)[1] == ".txt":
+                for linea in reader:
+                    cantidadID = cantidadID + 1
+                    arregloContactoLocal = linea.split(",")
+                    nombreLocal = arregloContactoLocal[0]
+                    apellidoLocal = arregloContactoLocal[1]
+                    telefonoLocal = arregloContactoLocal[2]
+                    addContact(nombreLocal, apellidoLocal, telefonoLocal, cantidadID)
+            elif path.splitext(externalFile)[1] == ".csv":
+                for linea in reader:
+                    cantidadID = cantidadID + 1
+                    arregloContactoLocal = linea.split(";")
+                    nombreLocal = arregloContactoLocal[0]
+                    apellidoLocal = arregloContactoLocal[1]
+                    telefonoLocal = arregloContactoLocal[2]
+                    addContact(nombreLocal, apellidoLocal, telefonoLocal, cantidadID)
+            else:
+                for linea in reader:
+                    cantidadID = cantidadID + 1
+                    arregloContactoLocal = linea.split(",")
+                    nombreLocal = arregloContactoLocal[0]
+                    apellidoLocal = arregloContactoLocal[1]
+                    telefonoLocal = arregloContactoLocal[2]
+                    addContact(nombreLocal, apellidoLocal, telefonoLocal, cantidadID)
+
+            print("\n Archivo cargado exitosamente.")
+    
+    else:
+        print("\n El archivo de contactos en la ruta " + externalFile + " no existe.")
+
+#metodo que muestra mensaje de llamando contacto (si existe) por 60 segundos
+def callContact(IDcontacto):
+    
+    if datosContactoID(IDcontacto):
+        print("\n Llamando a : " + datosContactoID(IDcontacto)[1] + " " + datosContactoID(IDcontacto)[2] )
+        print(" Telefono : " + str(datosContactoID(IDcontacto)[3]))
+        tiempoTranscurrido = 0
+        
+        while tiempoTranscurrido < 15:
+            tiempoInicial = time.time()       
+            tiempoFinal = time.time()
+            tiempoTranscurrido = tiempoTranscurrido + (tiempoFinal - tiempoInicial)
+
+                  
+        print("\n Llamada finalizada")
+    else:
+         print("\n ContactoID no existe")
+            
+#metodo que carga a lista con contactos para enviar mensaje
+def msgContacts(IDcontacto):
+    
+    infoContacto = datosContactoID(IDcontacto)
+    if infoContacto:
+        listaContactosMsj.append(infoContacto[1] + " " + infoContacto[2] + " ( " + infoContacto[3] + " ) ")
+    else:
+        print("\n ContactoID no existe")
+            
+            
+            
+            
+  
+#metodo que agrega un contacto existente a la lista de favoritos
+def addToFavorite(IDcontacto): 
+    
+    if datosContactoID(IDcontacto):
+        listaFavoritos.append(datosContactoID(IDcontacto)[0] + "," + datosContactoID(IDcontacto)[1] + "," + datosContactoID(IDcontacto)[2] + "," + datosContactoID(IDcontacto)[3]) 
+    else:
+        print("\n ContactoID no existe")
+
+#variable para ciclo de menu principal, es la que condiciona que no termine el programa hasta que se elija la opcion exit
+exitSeleccion = False
 
 
 #ciclo de menu principal que permite navegar entre todas las opciones de la app
@@ -114,6 +209,7 @@ while exitSeleccion == False:
         contadorContactos = 0
         for filas in listaVacia:
                 contadorContactos += 1
+            
         while terminado1 == False:			
             nombrein = input("\n Nombre: ")
             apellidoin = input("\n Apellido: ")
@@ -132,6 +228,15 @@ while exitSeleccion == False:
         apellidoDel = input("\n Apellido: ")
     
     elif seleccion == "4":  # 4. Carga desde archivo local
-        loadLocalFile()
+        loadLocalFile() 
+    
+    elif seleccion == "5":  # 4. Carga de un archivo externo 
+         ruta = input ("\n Ingresa la ruta del archivo de contactos: ")
+        loadFromFile(ruta)
         
+        
+    elif opcionInteraccion == "6":  # 6. Exit sub menu
+                terminosubMenu = True
 
+   
+        
