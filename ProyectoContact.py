@@ -32,6 +32,21 @@ listaVacia = []
 contactoNuevo = []
 listaFavoritos = []
 
+#Metodo que parte el texto de listaVacia y devuelve el elemento de la lista de apellido (posicion 2) y cuando no encuentra apellido
+#devuelve nombre (posicion 1)
+def ordenarContacto(elem):
+    arregloContacto = elem.split(",")
+    if(arregloContacto[2] != ""):
+        return arregloContacto[2]
+    else:
+        return arregloContacto[1]
+
+#metodo para agregar contactos
+def addContact(nombre, apellido, telefono, contadorContactos): 
+        
+    listaVacia.append(str(contadorContactos) + "," + nombre.strip() + "," + apellido.strip() + "," + telefono.strip())
+
+
 
 
 #metodo para ordenar y mostrar tabla "pretty" de contactos
@@ -44,6 +59,14 @@ def listContacts():
     print("\n{0:10} {1:10} {2:10} {3:10} \n" .format(sContactID, snombre, sapellido, sTel)) 
    
     listaVacia.sort(key=ordenarContacto)
+    for contacto in listaVacia:
+        arregloContactos = contacto.split(",")
+        IDcontacto = arregloContactos[0]
+        nombre = arregloContactos[1]
+        apellido = arregloContactos[2]
+        tel = arregloContactos[3]           
+        print(IDcontacto, nombre, apellido, tel)
+
 
 
 #ciclo de menu principal que permite navegar entre todas las opciones de la app
