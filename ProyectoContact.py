@@ -242,9 +242,34 @@ while exitSeleccion == False:
          ruta = input ("\n Ingresa la ruta del archivo de contactos: ")
         loadFromFile(ruta)
         
+    elif seleccion == "6":  # 6. Interaccion contactos (sub menu - fase 3)
+        print("\n Sub menu Interaccion Contactos \n".center(100, "-"))
+        print(fase3Opcion1)
+        print(fase3Opcion2)
+        print(fase3Opcion3)
+        print(fase3Opcion4)
+        print(fase3Opcion5)
+        print(fase3Opcion6)
         
-    elif opcionInteraccion == "6":  # 6. Exit sub menu
-                terminosubMenu = True
+        #variable que permite el ciclo de sub menu y hasta que cambie saldra al menu principal
+        terminosubMenu = False
+
+        #ciclo que se mantiene en las opciones de sub menu fase 3        
+    if opcionInteraccion == "1":  # 1. Llamar Contacto
+       xcontactID = input("\n Ingresa el contactcID : ")
+       callContact(xcontactID)
+    elif opcionInteraccion == "2":  # 2. Mensaje Contactos
+       listaContactosMsj = []
+       terminadoMsjContacto = False
+
+continuar = input("\n Escribe 1 si deseas agregar mas contactos, 0 si has terminado: ")
+    if(continuar == "0"):
+       terminadoMsjContacto = True
+       contactosSeleccionados = listamsjContactos()
+       mensaje = input("\n Escribe tu mensaje : ")
+       print(contactosSeleccionados)
+       print("\n Msj: " + mensaje)
+       
 
    
         
