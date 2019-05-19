@@ -26,12 +26,20 @@ print(opcion7)
 print(opcion8)
 print(opcionExit)
 
-
+#ciclo de menu principal que permite navegar entre todas las opciones de la app
 while exitSeleccion == False:
-    seleccion = input("¿Que opcion deseas? : ")
+    seleccion = input("\n ¿Que opcion deseas? : ")
     terminado1 = False
-   
-    if seleccion == "1": 
+
+#condicionales if de menu principal, son 7 opciones
+
+    if seleccion == "1": # 1. Agregar contacto
         contadorContactos = 0
         for filas in listaVacia:
                 contadorContactos += 1
+        while terminado1 == False:			
+            nombrein = input( Nombre)
+            apellidoin = input(Apellido)
+            telefonoin = input(Telefono)
+            contadorContactos = contadorContactos + 1
+            addContact(nombrein,apellidoin,telefonoin, contadorContactos)
