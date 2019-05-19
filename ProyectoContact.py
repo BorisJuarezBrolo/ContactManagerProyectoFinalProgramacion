@@ -203,6 +203,14 @@ def getFavoriteList():
     sTel = "Telefono"
     print("\n{0:10} {1:10} {2:10} {3:10} \n" .format(sContactID, snombre, sapellido, sTel))    
     listaFavoritos.sort(key=ordenarContacto)
+    
+    for contacto in listaFavoritos:
+        arregloContactos = contacto.split(",")
+        IDcontacto = arregloContactos[0]
+        nombre = arregloContactos[1]
+        apellido = arregloContactos[2]
+        tel = arregloContactos[3]           
+        print("{0:10} {1:10} {2:10} {3:10}" .format(IDcontacto, nombre, apellido, tel))
 
 
 #variable para ciclo de menu principal, es la que condiciona que no termine el programa hasta que se elija la opcion exit
