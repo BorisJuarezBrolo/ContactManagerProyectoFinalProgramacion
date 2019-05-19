@@ -43,6 +43,10 @@ listaVacia = []
 contactoNuevo = []
 listaFavoritos = []
 
+#variables para fase 6 (web apis) 
+rutaWeb = 'http://demo7862839.mockable.io/contacts?gid=101'
+
+
 #Metodo que parte el texto de listaVacia y devuelve el elemento de la lista de apellido (posicion 2) y cuando no encuentra apellido
 #devuelve nombre (posicion 1)
 def ordenarContacto(elem):
@@ -110,8 +114,10 @@ def loadLocalFile():
             print("\n Archivo cargado exitosamente.")
     else:
         print("\n El archivo " + dirFichero + " no existe en la carpeta local.")
-
-
+  
+  
+#variable para ciclo de menu principal, es la que condiciona que no termine el programa hasta que se elija la opcion exit
+exitSeleccion = False
 
 #ciclo de menu principal que permite navegar entre todas las opciones de la app
 while exitSeleccion == False:
@@ -144,22 +150,6 @@ while exitSeleccion == False:
     elif seleccion == "4":  # 4. Carga desde archivo local
         loadLocalFile()
         
-    
-    elif seleccion == "6":  # 6. Interaccion contactos (sub menu - fase 3)
-        print("\n Sub menu Interaccion Contactos \n".center(100, "-"))
-        print(fase3Opcion1)
-        print(fase3Opcion2)
-        print(fase3Opcion3)
-        print(fase3Opcion4)
-        print(fase3Opcion5)
-        print(fase3Opcion6)
         
-        #variable que permite el ciclo de sub menu y hasta que cambie saldra al menu principal
-        terminosubMenu = False    
-        #ciclo que se mantiene en las opciones de sub menu fase 3
-        while terminosubMenu == False:
-            opcionInteraccion = input("\n Ejecutar opcion : ")
-        
-            if opcionInteraccion == "1":  # 1. Llamar Contacto
-                xcontactID = input("\n Ingresa el contactcID : ")
-                callContact(xcontactID)
+    elif opcionInteraccion == "6":  # 6. Exit sub menu
+                terminosubMenu = True
