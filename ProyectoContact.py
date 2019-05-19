@@ -1,5 +1,7 @@
 import os.path as path
 import time
+import requests
+import json
 
 #variables para texto de menu principal
 textoTitulo = " Proyecto Contact Manager App "
@@ -142,4 +144,22 @@ while exitSeleccion == False:
     elif seleccion == "4":  # 4. Carga desde archivo local
         loadLocalFile()
         
-
+    
+    elif seleccion == "6":  # 6. Interaccion contactos (sub menu - fase 3)
+        print("\n Sub menu Interaccion Contactos \n".center(100, "-"))
+        print(fase3Opcion1)
+        print(fase3Opcion2)
+        print(fase3Opcion3)
+        print(fase3Opcion4)
+        print(fase3Opcion5)
+        print(fase3Opcion6)
+        
+        #variable que permite el ciclo de sub menu y hasta que cambie saldra al menu principal
+        terminosubMenu = False    
+        #ciclo que se mantiene en las opciones de sub menu fase 3
+        while terminosubMenu == False:
+            opcionInteraccion = input("\n Ejecutar opcion : ")
+        
+            if opcionInteraccion == "1":  # 1. Llamar Contacto
+                xcontactID = input("\n Ingresa el contactcID : ")
+                callContact(xcontactID)
