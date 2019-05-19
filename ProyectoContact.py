@@ -222,7 +222,19 @@ def removeFromFavorite(nombre,apellido):
         if str(nombreContactoListafav).upper() == nombre.strip().upper() and str(apellidoContactoListafav).upper() == apellido.strip().upper():
             listaFavoritos.remove(contactofav)
             print("\n Contacto eliminado de favoritos")
-        
+
+            
+ 
+#metodo que utiliza el GET (lee) de la api dada para obtener los datos de los contactos y guardarlos en la lista
+
+def GETcontactosAPI():
+    req = requests.get(rutaWeb)
+
+    contadorContactos = 0
+    for filas in listaVacia:
+        contadorContactos += 1
+
+    
         
         
 #variable para ciclo de menu principal, es la que condiciona que no termine el programa hasta que se elija la opcion exit
