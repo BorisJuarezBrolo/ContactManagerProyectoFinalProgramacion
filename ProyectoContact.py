@@ -325,6 +325,11 @@ while exitSeleccion == False:
         
     elif seleccion == "8":  # 8. Cargar Contactos Web
         POSTcontactoAPI()
+        
+    elif seleccion == "9":  # 9. Exit
+        exitSeleccion = True
+
+print(" \n Termino")
  
 
    
