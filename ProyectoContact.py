@@ -67,6 +67,17 @@ def listContacts():
         apellido = arregloContactos[2]
         tel = arregloContactos[3]           
         print("{0:10} {1:10} {2:10} {3:10}" .format(IDcontacto, nombre, apellido, tel))
+        
+#metodo para eliminar un contacto buscandolo con nombre y apellido
+def removeContact(nombre,apellido):
+    
+    for contacto in listaVacia:
+        arregloContacto = contacto.split(",") 
+        nombreContactoLista = arregloContacto[1]
+        apellidoContactoLista = arregloContacto[2]
+        if str(nombreContactoLista).upper() == nombre.strip().upper() and str(apellidoContactoLista).upper() == apellido.strip().upper():
+            listaVacia.remove(contacto)
+            print("\n Contacto eliminado")
 
 
 
@@ -93,4 +104,8 @@ while exitSeleccion == False:
                 
     elif seleccion == "2":  # Lista de contactos
         listContacts() 
+         
+    elif seleccion == "3":  # 3. Eliminar contacto
+        nombreDel = input("\n Nombre: ") 
+        apellidoDel = input("\n Apellido: ")
 
