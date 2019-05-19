@@ -172,6 +172,19 @@ def callContact(IDcontacto):
         print("\n Llamada finalizada")
     else:
          print("\n ContactoID no existe")
+            
+#metodo que carga a lista con contactos para enviar mensaje
+def msgContacts(IDcontacto):
+    
+    infoContacto = datosContactoID(IDcontacto)
+    if infoContacto:
+        listaContactosMsj.append(infoContacto[1] + " " + infoContacto[2] + " ( " + infoContacto[3] + " ) ")
+    else:
+        print("\n ContactoID no existe")
+            
+            
+            
+            
   
 #variable para ciclo de menu principal, es la que condiciona que no termine el programa hasta que se elija la opcion exit
 exitSeleccion = False
