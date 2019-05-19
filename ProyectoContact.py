@@ -184,6 +184,12 @@ def datosContactoID(IDcontacto):
             contactoExiste = True
             break
             
+    if contactoExiste == False:
+        arregloContactoID = []
+
+
+    return arregloContactoID
+            
 #metodo que carga a lista con contactos para enviar mensaje
 def msgContacts(IDcontacto):
     
