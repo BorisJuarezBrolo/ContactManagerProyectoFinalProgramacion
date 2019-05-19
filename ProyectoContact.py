@@ -162,6 +162,16 @@ def callContact(IDcontacto):
         print("\n Llamando a : " + datosContactoID(IDcontacto)[1] + " " + datosContactoID(IDcontacto)[2] )
         print(" Telefono : " + str(datosContactoID(IDcontacto)[3]))
         tiempoTranscurrido = 0
+        
+        while tiempoTranscurrido < 15:
+            tiempoInicial = time.time()       
+            tiempoFinal = time.time()
+            tiempoTranscurrido = tiempoTranscurrido + (tiempoFinal - tiempoInicial)
+
+                  
+        print("\n Llamada finalizada")
+    else:
+         print("\n ContactoID no existe")
   
 #variable para ciclo de menu principal, es la que condiciona que no termine el programa hasta que se elija la opcion exit
 exitSeleccion = False
