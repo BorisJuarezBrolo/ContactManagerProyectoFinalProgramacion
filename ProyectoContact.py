@@ -171,6 +171,37 @@ def addToFavorite(IDcontacto):
     else:
         print("\n ContactoID no existe")
 
+#metodo que devuelve la lista de contactos favoritos con todos sus datos y ordenados por apellido y nombre    
+def getFavoriteList(): 
+
+    snombre = "Nombre"
+    sapellido = "Apellido"
+    sContactID = "ContactID"
+    sTel = "Telefono"
+    print("\n{0:10} {1:10} {2:10} {3:10} \n" .format(sContactID, snombre, sapellido, sTel))    
+    listaFavoritos.sort(key=ordenarContacto)
+
+    for contacto in listaFavoritos:
+        arregloContactos = contacto.split(",")
+        IDcontacto = arregloContactos[0]
+        nombre = arregloContactos[1]
+        apellido = arregloContactos[2]
+        tel = arregloContactos[3]           
+        print("{0:10} {1:10} {2:10} {3:10}" .format(IDcontacto, nombre, apellido, tel))
+
+#metodo que elimina un contacto recibiendo nombre y apellido de la lista de favoritos
+def removeFromFavorite(nombre,apellido):
+    
+    for contactofav in listaFavoritos:
+        arregloContactofav = contactofav.split(",") 
+        nombreContactoListafav = arregloContactofav[1]
+        apellidoContactoListafav = arregloContactofav[2]
+        if str(nombreContactoListafav).upper() == nombre.strip().upper() and str(apellidoContactoListafav).upper() == apellido.strip().upper():
+            listaFavoritos.remove(contactofav)
+            print("\n Contacto eliminado de favoritos")
+        
+        
+        
 #variable para ciclo de menu principal, es la que condiciona que no termine el programa hasta que se elija la opcion exit
 exitSeleccion = False
 
