@@ -1,4 +1,4 @@
-
+import os.path as path
 
 #variables para texto de menu principal
 textoTitulo = " Proyecto Contact Manager App "
@@ -26,6 +26,12 @@ print(opcion7)
 print(opcion8)
 print(opcionExit)
 
+
+#variable listaVacia principal, contactoNuevo para datos de contacto, Golbales para que intractuen en todos metodos 
+listaVacia = []
+contactoNuevo = []
+listaFavoritos = []
+
 #ciclo de menu principal que permite navegar entre todas las opciones de la app
 while exitSeleccion == False:
     seleccion = input("\n ¿Que opcion deseas? : ")
@@ -46,3 +52,4 @@ while exitSeleccion == False:
             continuar = input("\n Escribe 1 si deseas agregar mas contactos, 0 si has terminado: ")
             if(continuar == "0"):
                 terminado1 = True
+
