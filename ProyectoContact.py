@@ -78,6 +78,28 @@ def removeContact(nombre,apellido):
         if str(nombreContactoLista).upper() == nombre.strip().upper() and str(apellidoContactoLista).upper() == apellido.strip().upper():
             listaVacia.remove(contacto)
             print("\n Contacto eliminado")
+            
+def loadLocalFile():
+    dirFichero = 'InitialContacts.txt'
+    if(path.exists(dirFichero)):
+        with open(dirFichero, 'r') as reader:
+
+            cantidadID = 0
+            for filas in listaVacia:
+                    cantidadID += 1
+
+            for linea in reader:
+                cantidadID = cantidadID + 1
+                arregloContactoLocal = linea.split(",")
+                nombreLocal = arregloContactoLocal[0]
+                apellidoLocal = arregloContactoLocal[1]
+                telefonoLocal = arregloContactoLocal[2]
+            
+                addContact(nombreLocal, apellidoLocal, telefonoLocal, cantidadID)
+
+            print("\n Archivo cargado exitosamente.")
+    else:
+        print("\n El archivo " + dirFichero + " no existe en la carpeta local.")
 
 
 
@@ -108,4 +130,8 @@ while exitSeleccion == False:
     elif seleccion == "3":  # 3. Eliminar contacto
         nombreDel = input("\n Nombre: ") 
         apellidoDel = input("\n Apellido: ")
+    
+    elif seleccion == "4":  # 4. Carga desde archivo local
+        loadLocalFile()
+        
 
