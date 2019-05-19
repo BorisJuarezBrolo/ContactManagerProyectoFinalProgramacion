@@ -38,8 +38,11 @@ while exitSeleccion == False:
         for filas in listaVacia:
                 contadorContactos += 1
         while terminado1 == False:			
-            nombrein = input( Nombre)
-            apellidoin = input(Apellido)
-            telefonoin = input(Telefono)
-            contadorContactos = contadorContactos + 1
+            nombrein = input("\n Nombre: ")
+            apellidoin = input("\n Apellido: ")
+            telefonoin = input("\n Telefono: ")
+            contadorContactos = contadorContactos + 1;
             addContact(nombrein,apellidoin,telefonoin, contadorContactos)
+            continuar = input("\n Escribe 1 si deseas agregar mas contactos, 0 si has terminado: ")
+            if(continuar == "0"):
+                terminado1 = True
