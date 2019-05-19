@@ -155,8 +155,13 @@ def loadFromFile(externalFile):
     else:
         print("\n El archivo de contactos en la ruta " + externalFile + " no existe.")
 
-
-  
+#metodo que muestra mensaje de llamando contacto (si existe) por 60 segundos
+def callContact(IDcontacto):
+    
+    if datosContactoID(IDcontacto):
+        print("\n Llamando a : " + datosContactoID(IDcontacto)[1] + " " + datosContactoID(IDcontacto)[2] )
+        print(" Telefono : " + str(datosContactoID(IDcontacto)[3]))
+        tiempoTranscurrido = 0
   
 #variable para ciclo de menu principal, es la que condiciona que no termine el programa hasta que se elija la opcion exit
 exitSeleccion = False
