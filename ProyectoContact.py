@@ -257,6 +257,9 @@ def GETcontactosAPI():
         nombreweb = contacto['FirstName']
         apellidoweb = contacto['LastName']
         telefonoweb = contacto['Phone']
+        addContact(nombreweb,apellidoweb,telefonoweb)
+
+    print("\n Contactos web obtenidos exitosamente")
 
    
 
