@@ -204,11 +204,13 @@ def listamsjContactos():
     listaContactos = ""
     contadorContacts = 1
     for linea in listaContactosMsj:
-            
-            
-            
-            
-  
+        if contadorContacts == 1:
+            listaContactos = "\n To: " + linea
+            contadorContacts = contadorContacts + 1
+        else:            
+            listaContactos = listaContactos + ", " + linea
+
+
 #metodo que agrega un contacto existente a la lista de favoritos
 def addToFavorite(IDcontacto): 
     
