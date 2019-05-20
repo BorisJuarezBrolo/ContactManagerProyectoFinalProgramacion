@@ -282,7 +282,10 @@ def POSTcontactoAPI():
             jsonContactos = jsonContactos + ', ' + ' { ' + '"FirstName":' + '"' + arregloContactoPost[1] + '"' + ',' + '"LastName":' + '"' + arregloContactoPost[2] + '"' + ',' + '"Phone":' + '"' + arregloContactoPost[3] + '"' +  ' } '
 
     #string con formato json de los datos de la lista
+    
     jsonContactosListo = '[ ' + jsonContactos + ' ]'
+    #jsonContactosListo = '{ "json_payload": '+  '[ ' + jsonContactos + ' ]'  + '}'
+    
     # convertir cadena en JSON:
     dataPost = json.loads(jsonContactosListo)
     req = requests.post(rutaWeb, json = dataPost )
