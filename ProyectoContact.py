@@ -198,11 +198,19 @@ def msgContacts(IDcontacto):
         listaContactosMsj.append(infoContacto[1] + " " + infoContacto[2] + " ( " + infoContacto[3] + " ) ")
     else:
         print("\n ContactoID no existe")
-            
-            
-            
-            
-  
+        
+#metodo que devuelve el texto de los contactos concatenados para mensaje            
+def listamsjContactos():
+    listaContactos = ""
+    contadorContacts = 1
+    for linea in listaContactosMsj:
+        if contadorContacts == 1:
+            listaContactos = "\n To: " + linea
+            contadorContacts = contadorContacts + 1
+        else:            
+            listaContactos = listaContactos + ", " + linea
+
+
 #metodo que agrega un contacto existente a la lista de favoritos
 def addToFavorite(IDcontacto): 
     
