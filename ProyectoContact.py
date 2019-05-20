@@ -286,7 +286,10 @@ def POSTcontactoAPI():
             contadorContactsWeb = 1;
         else:
             jsonContactos = jsonContactos + ', ' + ' { ' + '"FirstName":' + '"' + arregloContactoPost[1] + '"' + ',' + '"LastName":' + '"' + arregloContactoPost[2] + '"' + ',' + '"Phone":' + '"' + arregloContactoPost[3] + '"' +  ' } '
-        
+    
+    #string con formato json de los datos de la lista
+    jsonContactosListo = '[ ' + jsonContactos + ' ]'    
+
         
 #variable para ciclo de menu principal, es la que condiciona que no termine el programa hasta que se elija la opcion exit
 exitSeleccion = False
