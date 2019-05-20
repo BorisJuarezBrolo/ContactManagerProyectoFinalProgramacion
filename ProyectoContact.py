@@ -281,9 +281,11 @@ def POSTcontactoAPI():
     jsonContactos = ''
     for filas in listaVacia:
         arregloContactoPost = filas.split(",")
-   
-
-    
+        if contadorContactsWeb == 0:
+            jsonContactos =  ' { ' + '"FirstName":' + '"' + arregloContactoPost[1] + '"' + ',' + '"LastName":' + '"' + arregloContactoPost[2] + '"' + ',' + '"Phone":' + '"' + arregloContactoPost[3] + '"' +  ' } '
+            contadorContactsWeb = 1;
+        else:
+            jsonContactos = jsonContactos + ', ' + ' { ' + '"FirstName":' + '"' + arregloContactoPost[1] + '"' + ',' + '"LastName":' + '"' + arregloContactoPost[2] + '"' + ',' + '"Phone":' + '"' + arregloContactoPost[3] + '"' +  ' } '
         
         
 #variable para ciclo de menu principal, es la que condiciona que no termine el programa hasta que se elija la opcion exit
