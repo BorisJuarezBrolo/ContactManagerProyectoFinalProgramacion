@@ -209,6 +209,9 @@ def listamsjContactos():
             contadorContacts = contadorContacts + 1
         else:            
             listaContactos = listaContactos + ", " + linea
+            
+    return listaContactos
+
 
 
 #metodo que agrega un contacto existente a la lista de favoritos
