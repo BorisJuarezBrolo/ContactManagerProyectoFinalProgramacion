@@ -250,6 +250,11 @@ def GETcontactosAPI():
     contadorContactos = 0
     for filas in listaVacia:
         contadorContactos += 1
+    
+    for contacto in req.json():
+        #print(usuario['FirstName'])
+        contadorContactos = contadorContactos + 1;
+   
 
     
         
