@@ -3,31 +3,36 @@ import os.path as path
 import requests
 import json
 
-#variables para texto de menu principal
-textoTitulo = " Proyecto Contact Manager App "
-textoOpcion = "\n Selecciona una opcion \n"
-opcion1 = " 1. Agregar contacto  \n"
-opcion2 = " 2. Lista de contactos  \n"
-opcion3 = " 3. Eliminar contacto  \n"
-opcion4 = " 4. Carga desde archivo local \n"
-opcion5 = " 5. Carga desde archivo externo \n"
-opcion6 = " 6. Interaccion contactos  \n"
-opcion7 = " 7. Obtener Contactos Web  \n"
-opcion8 = " 8. Cargar Contactos Web  \n"
-opcionExit = "9. Exit \n"
+def menu():
 
-#se imprimen las variables del menu principal en la consola
-print(textoTitulo.center(100, "-"))
-print(textoOpcion)
-print(opcion1)
-print(opcion2)
-print(opcion3)
-print(opcion4)
-print(opcion5)
-print(opcion6)
-print(opcion7)
-print(opcion8)
-print(opcionExit)
+
+    # variables para texto de menu principal
+    textoTitulo = " Proyecto Contact Manager App "
+    textoOpcion = "\n Selecciona una opcion \n"
+    opcion1 = " 1. Agregar contacto  \n"
+    opcion2 = " 2. Lista de contactos  \n"
+    opcion3 = " 3. Eliminar contacto  \n"
+    opcion4 = " 4. Carga desde archivo local \n"
+    opcion5 = " 5. Carga desde archivo externo \n"
+    opcion6 = " 6. Interaccion contactos  \n"
+    opcion7 = " 7. Obtener Contactos Web  \n"
+    opcion8 = " 8. Cargar Contactos Web  \n"
+    opcionExit = "9. Exit \n"
+
+    # se imprimen las variables del menu principal en la consola
+    print(textoTitulo.center(100, "-"))
+    print(textoOpcion)
+    print(opcion1)
+    print(opcion2)
+    print(opcion3)
+    print(opcion4)
+    print(opcion5)
+    print(opcion6)
+    print(opcion7)
+    print(opcion8)
+    print(opcionExit)
+
+menu()
 
 #variables para texto de sub menu (fase 3)
 fase3Opcion1 = "\n 1. Llamar Contacto  \n"
@@ -333,18 +338,23 @@ while exitSeleccion == False:
             continuar = input("\n Escribe 1 si deseas agregar mas contactos, 0 si has terminado: ")
             if(continuar == "0"):
                 terminado1 = True
+        menu()
 
     elif seleccion == "2":  # Lista de contactos
-        listContacts()      
+        listContacts()
+        menu()
     elif seleccion == "3":  # 3. Eliminar contacto
         nombreDel = input("\n Nombre: ") 
         apellidoDel = input("\n Apellido: ")
         removeContact(nombreDel,apellidoDel)
+        menu()
     elif seleccion == "4":  # 4. Carga desde archivo local
         loadLocalFile()
+        menu()
     elif seleccion == "5":  # 5. Carga desde archivo externo
         ruta = input("\n Ingresa la ruta del archivo de contactos: ")
         loadFromFile(ruta)
+        menu()
     elif seleccion == "6":  # 6. Interaccion contactos (sub menu - fase 3)
         print("\n Sub menu Interaccion Contactos \n".center(100, "-"))
         print(fase3Opcion1)
@@ -398,11 +408,14 @@ while exitSeleccion == False:
                 removeFromFavorite(nombreDelfav,apellidoDelfav)
             elif opcionInteraccion == "6":  # 6. Exit sub menu
                 terminosubMenu = True
+                menu()
      
     elif seleccion == "7":  # 7. Obtener Contactos Web
         GETcontactosAPI()
+        menu()
     elif seleccion == "8":  # 8. Cargar Contactos Web
         POSTcontactoAPI()
+        menu()
         
     elif seleccion == "9":  # 9. Exit
         exitSeleccion = True
