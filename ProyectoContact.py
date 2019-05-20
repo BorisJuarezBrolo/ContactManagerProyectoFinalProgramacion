@@ -310,6 +310,7 @@ while exitSeleccion == False:
     elif seleccion == "3":  # 3. Eliminar contacto
         nombreDel = input("\n Nombre: ") 
         apellidoDel = input("\n Apellido: ")
+        removeContact(nombreDel,apellidoDel)
     
     elif seleccion == "4":  # 4. Carga desde archivo local
         loadLocalFile() 
