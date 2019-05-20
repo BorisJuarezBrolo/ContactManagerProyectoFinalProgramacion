@@ -93,6 +93,7 @@ def removeContact(nombre,apellido):
             listaVacia.remove(contacto)
             print("\n Contacto eliminado")
             
+#metodo para cargar archivo local en la lista de contactos            
 def loadLocalFile():
     dirFichero = 'InitialContacts.txt'
     if(path.exists(dirFichero)):
