@@ -263,28 +263,13 @@ def GETcontactosAPI():
     contadorContactos = 0
     for filas in listaVacia:
         contadorContactos += 1
-    
-    jSonRetorno = req.json()
-    listaContactosWeb = jSonRetorno['json_payload']
 
-    EsLista = type(jSonRetorno) is list
-    EsDict =  type(jSonRetorno) is dict
-
-    if EsLista == True: #la lista es una lista de diccionarios (api anterior) -> manda corchetes y son varios contactos
-
-        for contacto in listaContactosWeb:
-            #print(usuario['FirstName'])
-            contadorContactos = contadorContactos + 1;
-            nombreweb = contacto['FirstName']
-            apellidoweb = contacto['LastName']
-            telefonoweb = contacto['phone']
-            addContact(nombreweb,apellidoweb,telefonoweb, contadorContactos)
-
-    elif EsDict == True:  #la lista es una lista de diccionarios (api con formato nuevo), esto cuando no mande corchetes (1 solo contacto)
+    for contacto in req.json():
+        #print(usuario['FirstName'])
         contadorContactos = contadorContactos + 1;
-        nombreweb = listaContactosWeb['FirstName']
-        apellidoweb = listaContactosWeb['LastName']
-        telefonoweb = listaContactosWeb['phone']
+        nombreweb = contacto['FirstName']
+        apellidoweb = contacto['LastName']
+        telefonoweb = contacto['Phone']
         addContact(nombreweb,apellidoweb,telefonoweb, contadorContactos)
 
     print("\n Contactos web obtenidos exitosamente")
@@ -303,10 +288,7 @@ def POSTcontactoAPI():
             jsonContactos = jsonContactos + ', ' + ' { ' + '"FirstName":' + '"' + arregloContactoPost[1] + '"' + ',' + '"LastName":' + '"' + arregloContactoPost[2] + '"' + ',' + '"Phone":' + '"' + arregloContactoPost[3] + '"' +  ' } '
     
     #string con formato json de los datos de la lista
-    
-    jsonContactosListo = '[ ' + jsonContactos + ' ]' 
-    #jsonContactosListo = '{ "json_payload": '+  '[ ' + jsonContactos + ' ]'  + '}'
-
+    jsonContactosListo = '[ ' + jsonContactos + ' ]'    
     # convertir cadena en JSON:
     dataPost = json.loads(jsonContactosListo)
     req = requests.post(rutaWeb, json = dataPost )
