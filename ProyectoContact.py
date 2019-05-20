@@ -93,6 +93,7 @@ def removeContact(nombre,apellido):
             listaVacia.remove(contacto)
             print("\n Contacto eliminado")
             
+#metodo para cargar archivo local en la lista de contactos            
 def loadLocalFile():
     dirFichero = 'InitialContacts.txt'
     if(path.exists(dirFichero)):
@@ -172,6 +173,23 @@ def callContact(IDcontacto):
         print("\n Llamada finalizada")
     else:
          print("\n ContactoID no existe")
+      
+#metodo que devuelve los datos de un contacto (ID, nombre, apellido, telefono) en un arreglo (lista)
+def datosContactoID(IDcontacto):
+    arregloContactoID = []
+    contactoExiste = False
+    for fila in listaVacia:
+        arregloContactoID = fila.split(",")
+        contactoID = arregloContactoID[0]
+        if contactoID == str(IDcontacto):
+            contactoExiste = True
+            break
+            
+    if contactoExiste == False:
+        arregloContactoID = []
+
+
+    return arregloContactoID
             
 #metodo que carga a lista con contactos para enviar mensaje
 def msgContacts(IDcontacto):
@@ -181,11 +199,22 @@ def msgContacts(IDcontacto):
         listaContactosMsj.append(infoContacto[1] + " " + infoContacto[2] + " ( " + infoContacto[3] + " ) ")
     else:
         print("\n ContactoID no existe")
+        
+#metodo que devuelve el texto de los contactos concatenados para mensaje            
+def listamsjContactos():
+    listaContactos = ""
+    contadorContacts = 1
+    for linea in listaContactosMsj:
+        if contadorContacts == 1:
+            listaContactos = "\n To: " + linea
+            contadorContacts = contadorContacts + 1
+        else:            
+            listaContactos = listaContactos + ", " + linea
             
-            
-            
-            
-  
+    return listaContactos
+
+
+
 #metodo que agrega un contacto existente a la lista de favoritos
 def addToFavorite(IDcontacto): 
     
@@ -222,7 +251,31 @@ def removeFromFavorite(nombre,apellido):
         if str(nombreContactoListafav).upper() == nombre.strip().upper() and str(apellidoContactoListafav).upper() == apellido.strip().upper():
             listaFavoritos.remove(contactofav)
             print("\n Contacto eliminado de favoritos")
-        
+
+            
+ 
+#metodo que utiliza el GET (lee) de la api dada para obtener los datos de los contactos y guardarlos en la lista
+
+def GETcontactosAPI():
+    req = requests.get(rutaWeb)
+
+    contadorContactos = 0
+    for filas in listaVacia:
+        contadorContactos += 1
+    
+    for contacto in req.json():
+        #print(usuario['FirstName'])
+        contadorContactos = contadorContactos + 1;
+        nombreweb = contacto['FirstName']
+        apellidoweb = contacto['LastName']
+        telefonoweb = contacto['Phone']
+        addContact(nombreweb,apellidoweb,telefonoweb, contadorContactos)
+
+    print("\n Contactos web obtenidos exitosamente")
+
+   
+
+    
         
         
 #variable para ciclo de menu principal, es la que condiciona que no termine el programa hasta que se elija la opcion exit
@@ -308,9 +361,29 @@ while exitSeleccion == False:
                     continuar = input("\n Escribe 1 si deseas agregar mas contactos, 0 si has terminado: ")
                     if(continuar == "0"):
                         terminadoAddFavoritos = True
+                        
+                        
+             elif opcionInteraccion == "4":  # 4. Lista Favoritos
+                getFavoriteList()      
+                
+             elif opcionInteraccion == "5":  # 5. Eliminar Contacto Favorito
+                nombreDelfav = input("\n Nombre: ") 
+                apellidoDelfav = input("\n Apellido: ")
+                removeFromFavorite(nombreDelfav,apellidoDelfav)
+             elif opcionInteraccion == "6":  # 6. Exit sub menu
+                terminosubMenu = True
+     
+    elif seleccion == "7":  # 7. Obtener Contactos Web
+        GETcontactosAPI()
+        
+    elif seleccion == "8":  # 8. Cargar Contactos Web
+        POSTcontactoAPI()
+        
+    elif seleccion == "9":  # 9. Exit
+        exitSeleccion = True
 
-            elif opcionInteraccion == "4":  # 4. Lista Favoritos
-                getFavoriteList()
+print(" \n Termino")
+ 
 
    
         
