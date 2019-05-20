@@ -262,6 +262,13 @@ def GETcontactosAPI():
     for contacto in req.json():
         #print(usuario['FirstName'])
         contadorContactos = contadorContactos + 1;
+        nombreweb = contacto['FirstName']
+        apellidoweb = contacto['LastName']
+        telefonoweb = contacto['Phone']
+        addContact(nombreweb,apellidoweb,telefonoweb, contadorContactos)
+
+    print("\n Contactos web obtenidos exitosamente")
+
    
 
     
