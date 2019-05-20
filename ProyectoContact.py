@@ -273,6 +273,14 @@ def GETcontactosAPI():
 
     print("\n Contactos web obtenidos exitosamente")
 
+    
+#metodo que hace POST (inserta) en la api con los contactos en la lista actual
+def POSTcontactoAPI():
+  
+    contadorContactsWeb = 0
+    jsonContactos = ''
+    for filas in listaVacia:
+        arregloContactoPost = filas.split(",")
    
 
     
